@@ -9,31 +9,33 @@ function Header() {
     const [lastScrollY, setLastScrollY] = useState(0);
 
     useEffect(() => {
-        const handleScroll = () => {
+      const handleScroll = () => {
+          if (Math.abs(window.scrollY - lastScrollY) < 100) return; // Only trigger after 100px scroll
+          
           if (window.scrollY > lastScrollY) {
-            setVisible(false); // Hide when scrolling down
+              setVisible(false); // Hide when scrolling down
           } else {
-            setVisible(true); // Show when scrolling up
+              setVisible(true); // Show when scrolling up
           }
           setLastScrollY(window.scrollY);
-        };
-    
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-      }, [lastScrollY]);
+      };
+  
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
     return (
-        <header className={`flex justify-between items-center px-5 py-2 h-[80px] bg-gray-900 text-white fixed top-0 left-0 w-full duration-200 ease-in ${visible ? "translate-y-0" : "-translate-y-full"}`}>
+        <header className={`flex justify-between items-center px-5 py-2 h-[80px] bg-gray-900 text-white fixed top-0 left-0 w-full duration-200 ease-in ${visible ? "translate-y-0" : "-translate-y-full"} z-11`}>
             <div className="logo ">
                 <Link href='/'><img className="h-15" src="/logo.webp" alt="" /></Link>
             </div>
             <nav className="flex justify-end items-center w-[70%]">
-                <ul className={`flex justify-between w-full fixed top-[0] ${isOpen ? "left-[0%]":"left-[-100%]"} duration-100 ease-in lg:static lg:flex-row flex-col bg-purple-300 lg:bg-transparent lg:h-auto h-screen p-10 lg:p-0`} id="mobile-menu">
-                    <li className="hover:text-purple-300"><Link href='/'>Home</Link></li>
-                    <li className="hover:text-purple-300"><Link href='/'>About</Link></li>
-                    <li className="hover:text-purple-300"><Link href='/'>Portfolio</Link></li>
-                    <li className="hover:text-purple-300"><Link href='/'>Blog</Link></li>
-                    <li className="hover:text-purple-300"><Link href='/'>Contact</Link></li>
+                <ul className={`flex justify-between w-full py-20 fixed top-[0] ${isOpen ? "left-[0%]":"left-[-100%]"} duration-100 ease-in lg:static lg:flex-row flex-col bg-purple-300 lg:bg-transparent lg:h-auto h-screen p-10 lg:p-0`} id="mobile-menu">
+                    <li className="hover:text-purple-300 text-2xl lg:text-base"><Link href='/'>Home</Link></li>
+                    <li className="hover:text-purple-300 text-2xl lg:text-base"><Link href='/'>About</Link></li>
+                    <li className="hover:text-purple-300 text-2xl lg:text-base"><Link href='/'>Portfolio</Link></li>
+                    <li className="hover:text-purple-300 text-2xl lg:text-base"><Link href='/'>Blog</Link></li>
+                    <li className="hover:text-purple-300 text-2xl lg:text-base"><Link href='/'>Contact</Link></li>
                 </ul>
             </nav>
             <button className="w-auto lg:hidden z-2" onClick={()=> isOpen ? setIsOpen(false) : setIsOpen(true)}>
