@@ -1,27 +1,46 @@
 'use client';
+
 import { useState, useEffect, useRef } from "react";
-import Image from "next/image";
 import Projects from "./components/projects";
 import About from "./components/about";
+import Tech from "./components/Technology";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { relative } from "path";
+
+const useGsap = (ref, ref1) => {
+  useEffect(() => {
+    if (!ref.current) return;
+
+    gsap.to(ref.current, {
+      scrollTrigger: {
+        trigger: ref1.current,
+        start: "top 20px",
+        end:"bottom 100%",
+        onEnter: () => ref.current.classList.remove("sticky"),
+        onEnterBack: () => ref.current.classList.add("sticky"),
+      },
+    });
+  }, [ref]);
+};
+
 
 export default function Home() {
   const texts = ["better brands", "engaging content", "winning strategy"];
   const [index, setIndex] = useState(0);
+  const bannerRef = useRef(null);
+  const ref1 = useRef(null);
+  
 
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % texts.length);
-    }, 2000);
-  })
+    }, 3000);
+  });
 
-  
-
+  useGsap(bannerRef, ref1);
+    
   return (
     <>
-      <section className="lg:h-screen h-[80h] py-60 lg:px-20 px-5 sticky top-0">
+      <section ref={bannerRef} className="lg:h-screen h-[80h] py-60 lg:px-20 px-5 sticky top-0">
         <div className="text-white">
           <div>
             <h1 className="lg:text-7xl text-5xl bai-jamjuree">Let's create</h1>
@@ -39,18 +58,27 @@ export default function Home() {
           </div>
         </div>
         <div className="hero">
-          <video autoPlay loop muted className="absolute top-0 left-0 w-full h-full object-cover -z-10">
+          <video autoPlay playsInline loop muted className="absolute top-0 left-0 w-full h-full object-cover -z-1">
             <source src="/background.mp4" type="video/mp4" />
           </video>
         </div>
       </section>
 
+      <div ref={ref1}>
       <About/>
+      </div>
 
-      <section>
-        <h2 className="text-5xl h-[10vh] my-2 bai-jamjuree">Our Projects</h2>
+      <section className="p-2">
+        <h2 className="text-5xl h-[10vh] bai-jamjuree sticky top-0">Our Projects</h2>
           <Projects/>
       </section>
+
+      <section>
+        <Tech/>
+      </section>
+      
+
+
     </>
   );
 }
