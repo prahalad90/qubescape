@@ -1,7 +1,7 @@
 function Tech(){
 
     return (
-        <div className="bg-[url('/technologies_bg.jpg')] lg:h-screen h-auto flex p-8 gap-8 text-white">
+        <div className="bg-[url('/technologies_bg.jpg')] bg-cover lg:h-screen h-auto flex p-8 gap-8 text-white">
             <div className="w-1/3">
                 <h3 className="text-4xl bai-jamjuree mb-5">Stack of Technologies</h3>
                 <p className="text-l text-bold">We bring experience and expertise in scalable technologies to build custom solutions for your business. From beautiful UI/UX designs to robust back-end systems, we’ve got you covered.</p>

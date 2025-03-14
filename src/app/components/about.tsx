@@ -19,7 +19,6 @@ function About(){
             start: window.innerWidth < 768 ? "top 75%" : "top 80%",
             end: "bottom 85%",
             scrub: true,
-            markers:true,
           },
         });
       }, []);

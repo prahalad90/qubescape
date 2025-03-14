@@ -25,7 +25,7 @@ function Header() {
   }, [lastScrollY]);
 
     return (
-        <header className={`flex justify-between items-center px-5 py-2 h-[80px] bg-gray-900 text-white fixed top-0 left-0 w-full duration-200 ease-in ${visible ? "translate-y-0" : "-translate-y-full"} z-11`}>
+        <header className={`flex justify-between items-center px-5 py-2 h-[80px] bg-neutral-900 text-white fixed top-0 left-0 w-full duration-200 ease-in ${visible ? "translate-y-0" : "-translate-y-full"} z-11`}>
             <div className="logo ">
                 <Link href='/'><img className="h-15" src="/logo.webp" alt="" /></Link>
             </div>
