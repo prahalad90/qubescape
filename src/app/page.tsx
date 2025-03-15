@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Projects from "./components/projects";
 import About from "./components/about";
 import Tech from "./components/Technology";
+import Testimonial from "./components/Testimonial";
 import gsap from "gsap";
 
 const useGsap = (ref, ref1) => {
@@ -40,8 +41,8 @@ export default function Home() {
     
   return (
     <>
-      <section ref={bannerRef} className="lg:h-screen h-[80h] py-60 lg:px-20 px-5 sticky top-0">
-        <div className="text-white">
+      <section ref={bannerRef} className="lg:h-screen pt-[40vh] h-[80h] lg:px-20 px-5 sticky top-0">
+        <div className="text-white ">
           <div>
             <h1 className="lg:text-7xl text-5xl bai-jamjuree">Let's create</h1>
           </div>
@@ -77,7 +78,9 @@ export default function Home() {
         <Tech/>
       </section>
       
-
+      <section>
+      <Testimonial/>
+      </section>
 
     </>
   );
